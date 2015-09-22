@@ -1,0 +1,37 @@
+package lm;
+
+message Data {
+
+    required int32 version = 1;
+    required int32 type = 2;
+    required uint64 time = 3;
+
+    optional User user = 7;
+    optional Message msg = 8;
+    optional Result res=9;
+
+    message Result{
+        //////告知发送方  是否接收到消息
+        optional string msg = 1;////返回消息
+        required int32 code = 2;////返回消息code
+    }
+
+    enum MessageType {
+        USER = 0;
+        MESSAGE = 1;
+        RESULT =2;
+    }
+
+    message User {
+        required string user = 1;
+        optional string password = 2;
+        optional string token=3;
+    }
+
+    message Message {
+        required string content = 1;
+        optional string accept=2;///接收方
+        optional string send=3;////发送方
+    }
+
+}
